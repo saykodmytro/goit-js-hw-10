@@ -12,19 +12,29 @@ cardCatInfo.style.display = 'none';
 error.style.display = 'none';
 loader.style.display = 'block';
 
+breedSelect.innerHTML = '';
+
 breedSelect.addEventListener('change', onChange);
 
 fetchBreeds()
   .then(breeds => {
     breedSelect.style.display = 'block';
     loader.style.display = 'none';
-    breeds.forEach(breed => {
-      const option = document.createElement('option');
-      option.value = breed.id;
-      option.textContent = breed.name;
-      breedSelect.appendChild(option);
+
+    // breeds.forEach(breed => {
+    //   const option = document.createElement('option');
+    //   option.value = breed.id;
+    //   option.textContent = breed.name;
+    //   breedSelect.appendChild(option);
+    // });
+
+    new SlimSelect({
+      select: breedSelect,
+      placeholder: 'Select a breed',
+      data: breeds.map(breed => ({ value: breed.id, text: breed.name })),
     });
   })
+
   .catch(error => {
     breedSelect.style.display = 'none';
     loader.style.display = 'none';
