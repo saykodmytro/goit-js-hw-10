@@ -8,6 +8,7 @@ export function fetchBreeds() {
       return response.data;
     })
     .catch(error => {
+      onError();
       throw error;
     });
 }
@@ -20,6 +21,11 @@ export function fetchCatByBreed(breedId) {
       return response.data;
     })
     .catch(error => {
+      onError();
       throw error;
     });
+}
+
+function onError() {
+  Notify.failure(error.textContent);
 }
