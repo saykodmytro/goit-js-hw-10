@@ -3,7 +3,12 @@
 }
 
 .breed-select {
+  display: none;
   margin-bottom: 10px;
+}
+
+.error {
+  display: none;
 }
 
 .loader {
