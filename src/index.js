@@ -1,5 +1,6 @@
-import { fetchBreeds, fetchCatByBreed } from './cat-api.js';
+import { fetchBreeds, fetchCatByBreed } from './js/cat-api.js';
 import SlimSelect from 'slim-select';
+import 'slim-select/dist/slimselect.css';
 import { Notify } from 'notiflix';
 
 const breedSelect = document.querySelector('.breed-select');
@@ -21,20 +22,12 @@ fetchBreeds()
     breedSelect.style.display = 'block';
     loader.style.display = 'none';
 
-    // breeds.forEach(breed => {
-    //   const option = document.createElement('option');
-    //   option.value = breed.id;
-    //   option.textContent = breed.name;
-    //   breedSelect.appendChild(option);
-    // });
-
     new SlimSelect({
       select: breedSelect,
       placeholder: 'Select a breed',
       data: breeds.map(breed => ({ value: breed.id, text: breed.name })),
     });
   })
-
   .catch(error => {
     breedSelect.style.display = 'none';
     loader.style.display = 'none';
